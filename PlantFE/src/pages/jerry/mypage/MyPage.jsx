@@ -1,10 +1,12 @@
+import Sidebar from "../../../components/sidebar/Sidebar";
 import * as S from "./MyPage.styled";
+
 import React from "react";
 
 const MyPage = () => {
   return(
   <S.Container>
-    <S.Sidebar>사이드바 마이페이지</S.Sidebar>
+    <S.Sidebar><Sidebar/></S.Sidebar>
     <S.Line/>
     <S.Main>
       <S.SortBtnLst>진행중버튼 / 기한순 버튼</S.SortBtnLst>
