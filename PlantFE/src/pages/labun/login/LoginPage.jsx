@@ -49,7 +49,9 @@ const LoginPage = () => {
 
       <S.Signup>
         <p>계정이 없으신가요?</p>
-        <p className="Signup_text">회원가입</p>
+        <a href="/signup" className="Signup_text">
+          회원가입
+        </a>
       </S.Signup>
     </S.Container>
   );

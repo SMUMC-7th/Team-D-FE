@@ -54,6 +54,7 @@ const Button = styled.button`
   stroke-width: 1px;
   stroke: rgba(115, 167, 131, 0.55);
   border-radius: 10px;
+  margin-top: 60px;
 
   color: #d3e0d1;
   text-align: center;
@@ -68,6 +69,8 @@ const Button = styled.button`
 
 const Signup = styled.div`
   gap: 5px;
+  display: flex;
+  align-items: center;
 
   p {
     color: #808080;
