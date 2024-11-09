@@ -2,6 +2,9 @@ import * as S from "./LoginPage.style";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { FaUser } from "react-icons/fa";
+import { CiLock } from "react-icons/ci";
+import { PiPlant } from "react-icons/pi";
 
 const LoginPage = () => {
   const schema = yup.object().shape({
@@ -20,17 +23,16 @@ const LoginPage = () => {
 
   return (
     <S.Container>
-      <img className="Leaf" src="../Images/login_leaf.png" />
+      <PiPlant className="leaf" />
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <img src="../Images/login_userID.png" />
+        <div className="Container_InputBox">
+          <FaUser className="Container_InputIcon" />
           <S.Input {...register("id")} placeholder=" 아이디를 입력하세요." />
         </div>
 
-        <S.Hr />
-        <div>
-          <img src="../Images/login_password.png" />
+        <div className="Container_InputBox">
+          <CiLock className="Container_InputIcon" />
           <S.Input
             type={"password"}
             {...register("password")}
@@ -38,7 +40,6 @@ const LoginPage = () => {
           />
         </div>
 
-        <S.Hr />
         <S.SearchID_PW>
           <p>아이디 찾기</p>
           <p> | </p>

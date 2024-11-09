@@ -5,21 +5,39 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 80px;
+  margin: 80px;
+  padding: 40px 0;
 
   width: 628px;
-  height: 870px;
+
   border-radius: 20px;
   border: 1px solid rgba(17, 59, 44, 0.43);
   background: #fff;
 
   div {
     display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 20px;
+  }
+  .Container_InputBox {
+    width: 518px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #408954;
+    margin-bottom: 40px;
   }
 
   .leaf {
     width: 84px;
     height: 67px;
+    fill: #000;
+    stroke-width: 1px;
+    margin: 80px;
+  }
+  .Container_InputIcon {
+    width: 33px;
+    height: 33px;
+    fill: #2b6039;
   }
 `;
 const SearchID_PW = styled.div`
