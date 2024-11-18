@@ -30,8 +30,10 @@ const Container = styled.div`
   .leaf {
     width: 84px;
     height: 67px;
-    fill: #000;
+    fill: #6bad99;
     stroke-width: 1px;
+    stroke: rgba(255, 255, 255, 0.23);
+
     margin: 80px;
   }
   .Container_InputIcon {
@@ -60,25 +62,37 @@ const Hr = styled.hr`
 `;
 const Input = styled.input`
   width: 344px;
-  height: 21px;
+  height: 40px;
   flex-shrink: 0;
   border: none;
+
+  color: rgba(105, 104, 104, 0.87);
+  font-family: "Gowun Batang";
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140.625%;
 `;
 const Button = styled.button`
   width: 537.908px;
   height: 64px;
 
-  background: rgba(32, 73, 28, 0.91);
-  stroke-width: 1px;
-  stroke: rgba(115, 167, 131, 0.55);
+  background: linear-gradient(
+    to left top,
+    rgba(150, 220, 199, 0.91),
+    rgba(178, 231, 202, 0.91),
+    rgba(234, 254, 231, 0.91),
+    rgba(220, 243, 218, 0.91)
+  );
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   border-radius: 10px;
+  border: none;
   margin-top: 60px;
+  margin-bottom: 30px;
 
-  color: #d3e0d1;
+  color: #799f83;
   text-align: center;
-  -webkit-text-stroke-width: 1;
-  -webkit-text-stroke-color: rgba(122, 187, 141, 0.55);
-  font-family: "Red Hat Display";
+  font-family: Calistoga;
   font-size: 25px;
   font-style: normal;
   font-weight: 400;

@@ -28,7 +28,7 @@ const LoginPage = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="Container_InputBox">
           <FaUser className="Container_InputIcon" />
-          <S.Input {...register("id")} placeholder=" 아이디를 입력하세요." />
+          <S.Input {...register("id")} placeholder="아이디를 입력하세요." />
         </div>
 
         <div className="Container_InputBox">
@@ -36,7 +36,7 @@ const LoginPage = () => {
           <S.Input
             type={"password"}
             {...register("password")}
-            placeholder="  비밀번호를 입력하세요."
+            placeholder="비밀번호를 입력하세요."
           />
         </div>
 
