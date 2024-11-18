@@ -97,6 +97,7 @@ const Button = styled.button`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  cursor: pointer;
 `;
 
 const Signup = styled.div`
