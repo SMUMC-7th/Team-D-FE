@@ -92,7 +92,7 @@ const TeamMakePage = () => {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <S.P>팀 명</S.P>
+          <S.P>프로젝트명</S.P>
           <S.InputBox>
             <S.Input type={"text"} {...register("projectName")} />
           </S.InputBox>
@@ -101,12 +101,20 @@ const TeamMakePage = () => {
           <S.P>기 간</S.P>
           <S.Container_Form_Input_Box>
             <S.InputBox>
-              <S.Input type={"date"} {...register("startDate")} />
-              부터
+              <input
+                className="Date_Input"
+                type={"date"}
+                {...register("startDate")}
+              />
+              <p>부터</p>
             </S.InputBox>
             <S.InputBox>
-              <S.Input type={"date"} {...register("endtDate")} />
-              까지
+              <input
+                className="Date_Input"
+                type={"date"}
+                {...register("endtDate")}
+              />
+              <p>까지</p>
             </S.InputBox>
           </S.Container_Form_Input_Box>
         </div>
@@ -128,7 +136,7 @@ const TeamMakePage = () => {
         </div>
 
         <S.CreateSeedButton type="submit">
-          씨앗 생성
+          CREATE
           <img src="../../../../public/plus.png" className="Plus" />
         </S.CreateSeedButton>
       </form>

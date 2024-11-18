@@ -15,14 +15,12 @@ const Container = styled.div`
 
   div {
     display: flex;
-    align-items: center;
-    gap: 10px;
   }
   .SmallText {
     width: 628px;
     display: flex;
     justify-content: right;
-
+    margin-right: 70px;
     color: #000;
     text-align: center;
     font-family: "Roboto Serif";
@@ -54,14 +52,15 @@ const P = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 3px;
+
+  border-radius: 10px;
   border: 1px solid #b2b2b2;
-  background: rgba(187, 212, 185, 0.25);
+  background: #d1ede4;
   box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
 
-  color: #535353;
+  color: #323232;
   text-align: right;
-  font-family: "BM EULJIRO";
+  font-family: "BMEULJIRO";
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -69,19 +68,14 @@ const P = styled.p`
 `;
 const MemberBox = styled.div`
   display: flex;
-  align-items: center;
   justify-content: space-between;
   width: 100%;
+  margin-left: 20px;
   p {
-    border-radius: 7px;
-    border: 1px solid #9c9c9c;
-    background: rgba(255, 167, 167, 0.25);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    padding: 5px 10px;
-    color: #414141;
+    color: #000;
     text-align: center;
-    font-family: GangwonEduAll;
-    font-size: 15px;
+    font-family: "BMEULJIRO";
+    font-size: 20px;
     font-style: normal;
     font-weight: 400;
     line-height: 140.625%;
@@ -89,20 +83,52 @@ const MemberBox = styled.div`
 `;
 
 const Container_Form_Input_Box = styled.div`
-  display: flex;
   flex-direction: column;
-  align-items: start;
-  gap: 10px;
+  justify-content: center;
 `;
 const InputBox = styled.div`
-  gap: 10px;
   margin-left: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  .Date_Input {
+    width: 150px;
+    height: 33px;
+    border-radius: 3px;
+    border: 1px solid #b2b2b2;
+    background: rgba(255, 250, 250, 0.25);
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+
+    color: #909090;
+    text-align: center;
+    font-family: "Roboto Serif";
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140.625%;
+  }
+  p {
+    color: #000;
+    text-align: center;
+    font-family: "EliceDigitalBaeum-Bd";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140.625%;
+  }
 `;
 const Input = styled.input`
   width: 260px;
   height: 50px;
   border: none;
-  border-bottom: 2px solid #6bad99;
+  border-bottom: 2px solid #797979;
+  color: #000;
+
+  font-family: "EliceDigitalBaeum-Bd";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140.625%;
 `;
 
 const Button = styled.button`
@@ -123,6 +149,7 @@ const Button = styled.button`
 const PlusButton = styled.button`
   width: 270px;
   height: 34px;
+  margin: 15px 0 0 20px;
   border-radius: 7px;
   border: 1px solid #b8b8b8;
   background: rgba(187, 212, 185, 0.25);
@@ -134,23 +161,30 @@ const CreateSeedButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5px;
+  gap: 15px;
 
-  background: rgba(32, 73, 28, 0.91);
-  stroke-width: 1px;
-  stroke: rgba(115, 167, 131, 0.55);
+  background: linear-gradient(
+    to left top,
+    rgba(150, 220, 199, 0.91),
+    rgba(178, 231, 202, 0.91),
+    rgba(234, 254, 231, 0.91),
+    rgba(220, 243, 218, 0.91)
+  );
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  stroke-width: 0.3px;
+  stroke: rgba(255, 255, 255, 0);
   border-radius: 10px;
+  border: none;
   margin-top: 60px;
 
-  color: #d3e0d1;
+  color: #2b6039;
   text-align: center;
-  -webkit-text-stroke-width: 1;
-  -webkit-text-stroke-color: rgba(122, 187, 141, 0.55);
-  font-family: "Red Hat Display";
+  font-family: Calistoga;
   font-size: 25px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  cursor: pointer;
 
   .Plus {
     width: 21.235px;
