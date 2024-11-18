@@ -22,6 +22,7 @@ const Container = styled.div`
     display: flex;
     align-items: flex-start;
     margin-top: 20px;
+
     p {
       margin: 0;
     }
@@ -67,7 +68,12 @@ const P = styled.p`
   height: 32px;
   border-radius: 3px;
   border: 1px solid #b2b2b2;
-  background: rgba(187, 212, 185, 0.25);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(138, 208, 186, 0.25) 49%,
+    rgba(22, 180, 130, 0.25) 100%
+  );
   box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
 
   display: flex;
@@ -96,12 +102,33 @@ const InputBox = styled.div`
     font-weight: 400;
     line-height: 140.625%;
   }
+  .InputBox_Input {
+    width: 170px;
+    height: 30px;
+    color: #000;
+    text-align: left;
+    font-family: "Gowun Batang";
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140.625%;
+    border: none;
+    border-bottom: 1px solid #d9d9d9;
+  }
 `;
 const Input = styled.input`
   width: 346px;
   height: 32px;
   border: none;
   border-bottom: 2px solid #6bad99;
+
+  color: #000;
+
+  font-family: "Gowun Batang";
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140.625%;
 `;
 const TermsInputBox = styled.div`
   display: flex;
@@ -137,10 +164,22 @@ const TermsInputBox = styled.div`
     }
   }
 `;
+
 const Button = styled.button`
+  width: 70px;
+  height: 22px;
   border-radius: 5px;
   border: 1px solid #979797;
-  background: rgba(187, 212, 185, 0.25);
+  background: linear-gradient(
+    to left top,
+    rgba(150, 220, 199, 0.91),
+    rgba(178, 231, 202, 0.91),
+    rgba(234, 254, 231, 0.91),
+    rgba(220, 243, 218, 0.91)
+  );
+  stroke-width: 1px;
+  stroke: #a3a3a3;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
   color: #3b3b3b;
   text-align: center;
@@ -149,25 +188,33 @@ const Button = styled.button`
   font-style: normal;
   font-weight: 400;
   line-height: 140.625%;
+  cursor: pointer;
 `;
 const SignUpButton = styled.button`
   width: 537.908px;
   height: 64px;
-  background: rgba(32, 73, 28, 0.91);
-  stroke-width: 1px;
-  stroke: rgba(115, 167, 131, 0.55);
-  border-radius: 10px;
-  margin-top: 60px;
 
-  color: #d3e0d1;
+  background: linear-gradient(
+    to left top,
+    rgba(150, 220, 199, 0.91),
+    rgba(178, 231, 202, 0.91),
+    rgba(234, 254, 231, 0.91),
+    rgba(220, 243, 218, 0.91)
+  );
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 10px;
+  border: none;
+  margin-top: 60px;
+  margin-bottom: 30px;
+
+  color: #799f83;
   text-align: center;
-  -webkit-text-stroke-width: 1;
-  -webkit-text-stroke-color: rgba(122, 187, 141, 0.55);
-  font-family: "Red Hat Display";
+  font-family: Calistoga;
   font-size: 25px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  cursor: pointer;
 `;
 const Hr = styled.hr`
   width: 550px;

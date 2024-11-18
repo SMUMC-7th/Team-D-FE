@@ -19,9 +19,7 @@ const SignUpPage = () => {
     firstName: yup.string().required(),
     email: yup.string().email().required(),
     gender: yup.string().required(),
-    year: yup.number().required().min(1900).max(new Date().getFullYear()),
-    month: yup.number().required().min(1).max(12),
-    day: yup.number().required().min(1).max(31),
+    birth: yup.string().required().min(1900).max(new Date().getFullYear()),
     termsOfService: yup.boolean().required().oneOf([true]),
   });
 
@@ -114,32 +112,11 @@ const SignUpPage = () => {
         <div>
           <S.P>생년월일</S.P>
           <S.InputBox>
-            <S.Input
-              type={"number"}
-              {...register("year")}
-              placeholder="년도"
-              style={{ width: "80px" }}
+            <input
+              className="InputBox_Input"
+              type={"date"}
+              {...register("birth")}
             />
-
-            <S.Input
-              type={"number"}
-              {...register("month")}
-              placeholder="월"
-              style={{ width: "80px" }}
-            />
-
-            <S.Input
-              type={"number"}
-              {...register("day")}
-              placeholder="일"
-              style={{ width: "80px" }}
-            />
-          </S.InputBox>
-        </div>
-        <div>
-          <S.P>생년월일</S.P>
-          <S.InputBox>
-            <input type={"date"} {...register("year")} />
           </S.InputBox>
         </div>
         <S.Hr />
