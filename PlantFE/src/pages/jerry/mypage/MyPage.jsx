@@ -1,22 +1,25 @@
-import Sidebar from "../../../components/sidebar/Sidebar";
+import Condition from "../../Condition/Condition";
+import { ShowCondition } from "../../Condition/Condition.styled";
+import Dropdown from "../dropdown/Dropdown";
+import ProjectTable from "../projectTable/ProjectTable";
+import Sidebar from "../sidebar/Sidebar";
 import * as S from "./MyPage.styled";
 
-import React from "react";
 
 const MyPage = () => {
   return(
   <S.Container>
-    <S.Sidebar><Sidebar/></S.Sidebar>
+    <S.Sidebar>
+      <Sidebar/>
+    </S.Sidebar>
     <S.Line/>
     <S.Main>
-      <S.SortBtnLst>진행중버튼 / 기한순 버튼</S.SortBtnLst>
-      <S.ConditionBar>완료 진행중 시작안함 토글버튼</S.ConditionBar>
-      <S.MainContentBox>아 도표 어케 만들지</S.MainContentBox>
+      <S.SortBtnLst><Dropdown/></S.SortBtnLst>
+      <S.ConditionBar><Condition/></S.ConditionBar>
+      <S.MainContentBox><ProjectTable/></S.MainContentBox>
     </S.Main>
   </S.Container>
-
   ) 
-  
 };
 
 export default MyPage;

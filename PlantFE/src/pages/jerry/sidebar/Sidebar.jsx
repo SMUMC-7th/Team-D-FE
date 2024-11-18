@@ -4,12 +4,20 @@ const Sidebar = () => {
     return(
         <S.Container>
             <S.Header>My page</S.Header>
-            <S.Profile>
-                
-                <img src="/pages/jerry/profile_init.png" alt="ㅠ" />
             
-            </S.Profile>
-            <S.Line></S.Line>
+            <S.ImgBox>
+                <img src="/src/pages/jerry/profile_init.png" alt="" />
+            </S.ImgBox>
+            
+            <S.ColumnWrapper>
+                <S.RowWrapper>
+                    <S.ProfileText size='25px'>나재호</S.ProfileText>
+                    <S.ProfileEditBtn>Edit</S.ProfileEditBtn>
+                </S.RowWrapper>
+                <S.ProfileText>ISFP</S.ProfileText>
+                <S.ProfileText>웹/앱서비스 개발</S.ProfileText>
+            </S.ColumnWrapper>
+            <S.Line/>
             <S.TextLst>
                 <S.NavText>나의 식물도감</S.NavText>
                 <S.NavText>프로젝트 관리</S.NavText>
