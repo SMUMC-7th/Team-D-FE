@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const AppContainer = styled.div`
-  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,7 +8,7 @@ const AppContainer = styled.div`
 
 const OutletWrapper = styled.div`
   width: 100%;
-  height: 91vh;
+  min-height: 91vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
