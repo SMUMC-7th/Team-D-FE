@@ -68,12 +68,7 @@ const P = styled.p`
   height: 32px;
   border-radius: 3px;
   border: 1px solid #b2b2b2;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.25) 0%,
-    rgba(138, 208, 186, 0.25) 49%,
-    rgba(22, 180, 130, 0.25) 100%
-  );
+  background: linear-gradient(180deg, #d1ede4 83.5%, #5e8e7f 100%);
   box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
 
   display: flex;
@@ -168,7 +163,7 @@ const TermsInputBox = styled.div`
 const Button = styled.button`
   width: 70px;
   height: 22px;
-  border-radius: 5px;
+  border-radius: 10px;
   border: 1px solid #979797;
   background: linear-gradient(
     to left top,
