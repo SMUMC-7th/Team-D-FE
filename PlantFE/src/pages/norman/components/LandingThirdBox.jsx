@@ -54,8 +54,9 @@ const ScrollBox2ContentBox = styled.div`
 `;
 
 const ScrollBox2Footer = styled.div`
-  font-family: "Cafe24Shiningstar";
-  font-size: 5vw;
+  margin-top: 50px;
+  font-family: "Cafe24Oneprettynight";
+  font-size: 4.5vw;
   color: white;
 `;
 

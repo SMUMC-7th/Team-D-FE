@@ -52,11 +52,11 @@ const ScrollBoxContentBoxWrapper = styled.div`
     text-align: center;
   }
   div {
-    width: 60%;
-    font-family: "Cafe24Shiningstar";
+    width: 50%;
+    font-family: "Cafe24Oneprettynight";
     display: flex;
     flex-direction: column;
-    font-size: 6vw;
+    font-size: 4.5vw;
     margin-right: 20px;
   }
   img {

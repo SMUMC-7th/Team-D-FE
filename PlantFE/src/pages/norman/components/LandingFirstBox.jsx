@@ -1,7 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 function LandingFirstBox() {
+  const navigate = useNavigate();
+
   return (
     <Container>
       <MainBox>
@@ -9,7 +12,7 @@ function LandingFirstBox() {
           <p>To make a better team,</p>
           <p>grow your plant</p>
           <ButtonBox>
-            <button>sign in</button>
+            <button onClick={() => navigate("/signup")}>sign in</button>
           </ButtonBox>
         </MainCenterBox>
       </MainBox>
@@ -77,6 +80,10 @@ const ButtonBox = styled.div`
       #ddfcea 296.64deg,
       #8fdec6 360deg
     );
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.02);
+    }
   }
 `;
 

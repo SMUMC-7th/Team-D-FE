@@ -37,6 +37,7 @@ const Button = ({
       $width={width}
       $height={height}
       $fontFamily={fontFamily}
+      onClick={() => onClickHandler()}
     >
       {content}
     </MyButton>
