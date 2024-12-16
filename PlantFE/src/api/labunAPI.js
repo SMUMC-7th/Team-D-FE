@@ -1,7 +1,7 @@
 import { authInstance, defaultInstance } from "./axiosInstance_labun";
 
 const PostSignup = async (data) => {
-  const response = await defaultInstance.post("/users/signup", {
+  const response = await defaultInstance.post("/users/sign/up", {
     userId: data.id,
     userName: data.lastName + data.firstName,
     userPassword: data.password,
@@ -13,9 +13,9 @@ const PostSignup = async (data) => {
 };
 
 const GetDuplicateID = async (data) => {
-  const response = await authInstance.get("/users/signup/duplicate", {
-    duplicate: data.userId,
-  });
+  const response = await authInstance.get(
+    `/users/sign/up/duplicate/${data.userId}`
+  );
   return response.data;
 };
 
