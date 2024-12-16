@@ -34,10 +34,11 @@ const LoginPage = () => {
     isPending,
   } = useMutation({
     mutationFn: PostLogin,
-    onSuccess: () => {
+    onSuccess: (response) => {
       console.log("데이터 제출 성공");
       setIsLogin(true);
-
+      localStorage.setItem("accessToken", response.accessToken);
+      localStorage.setItem("refreshToken", response.refreshToken);
       navigate("/");
     },
   });
