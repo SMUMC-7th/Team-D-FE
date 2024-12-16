@@ -62,6 +62,7 @@ const SignUpPage = () => {
     register,
     handleSubmit,
     watch,
+    getValues,
     setValue,
     formState: { isValid },
   } = useForm({
@@ -209,9 +210,24 @@ const SignUpPage = () => {
                   type={"checkbox"}
                   onChange={(e) => {
                     const isChecked = e.target.checked;
-                    setValue("personalInfo", isChecked);
-                    setValue("termsOfService", isChecked);
-                    setValue("age", isChecked);
+
+                    // setValue("personalInfo", isChecked);
+                    // setValue("termsOfService", isChecked);
+                    // setValue("age", isChecked);
+                    const allCheck =
+                      getValues("personalInfo") &&
+                      getValues("termsOfService") &&
+                      getValues("age");
+
+                    if (allCheck === false) {
+                      setValue("personalInfo", true);
+                      setValue("termsOfService", true);
+                      setValue("age", true);
+                    } else {
+                      setValue("personalInfo", false);
+                      setValue("termsOfService", false);
+                      setValue("age", false);
+                    }
                   }}
                 />
                 전체 동의합니다.

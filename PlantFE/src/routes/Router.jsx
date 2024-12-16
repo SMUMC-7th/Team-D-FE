@@ -8,6 +8,7 @@ import {
   CurrentPage,
   PlantPage,
   ErrorPage,
+  PlantBookPage,
 } from "../pages/index";
 
 const Router = [
@@ -42,6 +43,10 @@ const Router = [
       {
         path: "/team/plant/:teamId",
         element: <PlantPage />,
+      },
+      {
+        path: "/mypage/:userId/plantbook",
+        element: <PlantBookPage />,
       },
     ],
     errorElement: <ErrorPage />,
