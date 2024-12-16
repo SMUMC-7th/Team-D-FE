@@ -37,4 +37,9 @@ const PostProject = async (data) => {
   return response.data;
 };
 
-export { PostSignup, GetDuplicateID, PostLogin, PostProject };
+const GetPlantBook = async () => {
+  const response = await defaultInstance.get("");
+  return response.data;
+};
+
+export { PostSignup, GetDuplicateID, PostLogin, PostProject, GetPlantBook };
