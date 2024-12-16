@@ -11,12 +11,7 @@ import emailjs from "emailjs-com";
 const SignUpPage = () => {
   const navigate = useNavigate();
   const [isEmailSent, setIsEmailSent] = useState(false);
-  const [checks, setChecks] = useState({
-    all: false,
-    personalInfo: false,
-    termsOfService: false,
-    age: false,
-  });
+  const [IdValue, setIdValue] = useState(null);
 
   //이메일 인증
   const sendVerificationEmail = () => {
@@ -32,7 +27,6 @@ const SignUpPage = () => {
         "template_byfph8d",
         templateParams,
         "q6_H-nwCMUlkJt5hn"
-        // process.env.REACT_APP_PUBLIC_KEY
       )
       .then(() => {
         console.log("이메일이 성공적으로 보내졌습니다"), setIsEmailSent(true);
@@ -43,32 +37,6 @@ const SignUpPage = () => {
   };
   const handleVerification = () => {
     sendVerificationEmail();
-  };
-
-  //이용약관 전체 선택
-  const handleAllChange = (e) => {
-    const isChecked = e.target.checked;
-    setChecks({
-      all: isChecked,
-      personalInfo: isChecked,
-      termsOfService: isChecked,
-      age: isChecked,
-    });
-  };
-
-  //이용약관 개별 선택
-  const handleIndividualChange = (e, key) => {
-    const isChecked = e.target.checked;
-    const updatedChecks = {
-      ...checks,
-      [key]: isChecked,
-    };
-    updatedChecks.all =
-      updatedChecks.personalInfo &&
-      updatedChecks.termsOfService &&
-      updatedChecks.age;
-
-    setChecks(updatedChecks);
   };
 
   const schema = yup.object().shape({
@@ -82,25 +50,19 @@ const SignUpPage = () => {
     firstName: yup.string().required(),
     email: yup.string().email().required(),
     gender: yup.string().required(),
-    birth: yup.string().required().min(1900).max(new Date().getFullYear()),
+    birth: yup.string().required().min(new Date(1900, 0, 1)).max(new Date()),
     personalInfo: yup
       .boolean()
-      .required()
       .oneOf([true], "개인정보 수집 및 이용 동의가 필요합니다."),
-    termsOfService: yup
-      .boolean()
-      .required()
-      .oneOf([true], "약관에 동의해야 합니다."),
-    age: yup
-      .boolean()
-      .required()
-      .oneOf([true], "만 14세 이상임을 확인해야 합니다."),
+    termsOfService: yup.boolean().oneOf([true], "약관에 동의해야 합니다."),
+    age: yup.boolean().oneOf([true], "만 14세 이상임을 확인해야 합니다."),
   });
 
   const {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { isValid },
   } = useForm({
     resolver: yupResolver(schema),
@@ -125,7 +87,9 @@ const SignUpPage = () => {
   const handleDuplicateCheck = () => {
     const idValue = watch("id");
     if (idValue?.trim()) {
-      GetDuplicateID(idValue);
+      const response = GetDuplicateID(idValue);
+      console.log(response);
+      setIdValue(response);
     } else {
       alert("아이디를 입력해주세요");
     }
@@ -162,7 +126,7 @@ const SignUpPage = () => {
               style={{ width: "150px" }}
             />
             <S.Button onClick={handleDuplicateCheck}>중복 확인</S.Button>
-            <p>어쩌고저쩌고</p>
+            <p>{IdValue}</p>
           </S.InputBox>
         </div>
         <div>
@@ -241,42 +205,35 @@ const SignUpPage = () => {
           <S.TermsInputBox>
             <div className="TermsInputBox_Container">
               <label>
-                <input type={"checkbox"} onChange={handleAllChange} />
+                <input
+                  type={"checkbox"}
+                  onChange={(e) => {
+                    const isChecked = e.target.checked;
+                    setValue("personalInfo", isChecked);
+                    setValue("termsOfService", isChecked);
+                    setValue("age", isChecked);
+                  }}
+                />
                 전체 동의합니다.
               </label>
             </div>
             <div className="TermsInputBox_Container">
               <label>
-                <input
-                  type={"checkbox"}
-                  {...register("personalInfo")}
-                  checked={checks.personalInfo}
-                  onChange={(e) => handleIndividualChange(e, "personalInfo")}
-                />
+                <input type={"checkbox"} {...register("personalInfo")} />
                 개인정보 수집 및 이용 동의
               </label>
               <a href="">약관 보기</a>
             </div>
             <div className="TermsInputBox_Container">
               <label>
-                <input
-                  type={"checkbox"}
-                  {...register("termsOfService")}
-                  checked={checks.termsOfService}
-                  onChange={(e) => handleIndividualChange(e, "termsOfService")}
-                />
+                <input type={"checkbox"} {...register("termsOfService")} />
                 이용약관 동의(필수)
               </label>
               <a href="">약관 보기</a>
             </div>
             <div className="TermsInputBox_Container">
               <label>
-                <input
-                  type={"checkbox"}
-                  {...register("age")}
-                  checked={checks.age}
-                  onChange={(e) => handleIndividualChange(e, "age")}
-                />
+                <input type={"checkbox"} {...register("age")} />
                 본인은 만 14세 이상입니다.
               </label>
               <a href="">약관 보기</a>

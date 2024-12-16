@@ -2,10 +2,10 @@ import { authInstance, defaultInstance } from "./axiosInstance_labun";
 
 const PostSignup = async (data) => {
   const response = await defaultInstance.post("/users/signup", {
-    userId: data.userId,
-    userName: data.userName,
-    userPassword: data.userPassword,
-    uerEmail: data.userEmail,
+    userId: data.id,
+    userName: data.lastName + data.firstName,
+    userPassword: data.password,
+    uerEmail: data.email,
     gender: data.gender,
     birth: data.birth,
   });
@@ -20,7 +20,10 @@ const GetDuplicateID = async (data) => {
 };
 
 const PostLogin = async (data) => {
-  const response = await defaultInstance.post("/users/login", data);
+  const response = await defaultInstance.post("/users/login", {
+    userId: data.id,
+    userPassword: data.password,
+  });
   return response.data;
 };
 
