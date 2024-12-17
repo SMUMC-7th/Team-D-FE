@@ -42,41 +42,41 @@ const Router = [
       {
         path: "/register",
         element: (
-          <UserRoute>
-            <TeamMakePage />
-          </UserRoute>
+          // <UserRoute>
+          <TeamMakePage />
+          // </UserRoute>
         ),
       },
       {
         path: "/mypage/:userId",
         element: (
-          <UserRoute>
-            <MyPage />
-          </UserRoute>
+          // <UserRoute>
+          <MyPage />
+          // </UserRoute>
         ),
       },
       {
         path: "/team/current/:teamId",
         element: (
-          <UserRoute>
-            <CurrentPage />
-          </UserRoute>
+          // <UserRoute>
+          <CurrentPage />
+          // </UserRoute>
         ),
       },
       {
         path: "/team/plant/:teamId",
         element: (
-          <UserRoute>
-            <PlantPage />
-          </UserRoute>
+          // <UserRoute>
+          <PlantPage />
+          // </UserRoute>
         ),
       },
       {
         path: "/mypage/:userId/plantbook",
         element: (
-          <UserRoute>
-            <PlantBookPage />
-          </UserRoute>
+          // <UserRoute>
+          <PlantBookPage />
+          // </UserRoute>
         ),
       },
     ],

@@ -1,6 +1,21 @@
+import { useEffect, useState } from "react";
 import * as S from "./sidebar.styled";
+import { authInstance } from "../../../api/norman/axiosInstance";
+import { apiGetUserData } from "../../../api/norman/plantApis";
 
 const Sidebar = () => {
+  const [userInfo, setUserInfo] = useState();
+
+  useEffect(() => {
+    const getData = async () => {
+      const userData = await apiGetUserData();
+      console.log(userData);
+      setUserInfo(userData);
+    };
+
+    getData();
+  }, []);
+
   return (
     <S.Container>
       <S.Header>My page</S.Header>
@@ -11,11 +26,14 @@ const Sidebar = () => {
 
       <S.ColumnWrapper>
         <S.RowWrapper>
-          <S.ProfileText size="25px">나재호</S.ProfileText>
+          <S.ProfileText size="25px">
+            {" "}
+            {userInfo ? userInfo.userName : "대기중..."}
+          </S.ProfileText>
           <S.ProfileEditBtn>Edit</S.ProfileEditBtn>
         </S.RowWrapper>
-        <S.ProfileText>ISFP</S.ProfileText>
-        <S.ProfileText>웹/앱서비스 개발</S.ProfileText>
+        <S.ProfileText> {userInfo ? userInfo.mbti : "대기중..."}</S.ProfileText>
+        <S.ProfileText> {userInfo ? userInfo.role : "대기중..."}</S.ProfileText>
       </S.ColumnWrapper>
       <S.Line />
       <S.TextLst>
