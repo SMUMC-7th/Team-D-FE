@@ -77,6 +77,7 @@ const NavText = styled.div`
   line-height: 28.13px;
   text-align: center;
   border-bottom: 1px solid #a0a0a0;
+  cursor: pointer;
 `;
 const Line = styled.hr`
   margin: 0;
