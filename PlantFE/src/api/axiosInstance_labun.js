@@ -18,7 +18,7 @@ const axiosAuthApi = (url) => {
   const instance = axios.create({
     baseURL: url,
     headers: {
-      Authorization: "Bearer " + import.meta.env.VITE_API_TOKEN, // .env에 숨겨놓은 api 토큰을 사용
+      Authorization: "Bearer " + localStorage.getItem("accessToken"), // .env에 숨겨놓은 api 토큰을 사용
     },
   });
   return instance;

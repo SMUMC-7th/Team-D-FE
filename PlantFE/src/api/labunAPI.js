@@ -1,3 +1,4 @@
+import { useAuthContext } from "../context/AuthContext";
 import { authInstance, defaultInstance } from "./axiosInstance_labun";
 
 const PostSignup = async (data) => {
@@ -28,7 +29,7 @@ const PostLogin = async (data) => {
 };
 
 const PostProject = async (data) => {
-  const response = await defaultInstance.post("/users/project/make", {
+  const response = await defaultInstance.post("/projects/projectMake", {
     projectName: data.projectName,
     startDate: data.startDate,
     endDate: data.endDate,
