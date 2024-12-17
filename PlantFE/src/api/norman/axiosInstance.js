@@ -1,6 +1,9 @@
 import axios from "axios";
 const BASE_URL = "http://umc-d.kro.kr:3000";
 
+const host =
+  window.location.hostname === "localhost" ? "http://umc-d.kro.kr:3000" : "api";
+
 // 단순 get요청으로 인증값이 필요없는 경우
 const axiosApi = (url) => {
   const instance = axios.create({
@@ -75,5 +78,5 @@ const axiosAuthApi = (url) => {
   return instance;
 };
 
-export const authInstance = axiosAuthApi(BASE_URL);
+export const authInstance = axiosAuthApi(host);
 export const defaultInstance = axiosApi(BASE_URL);
