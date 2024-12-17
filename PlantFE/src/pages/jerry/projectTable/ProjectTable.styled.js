@@ -86,8 +86,30 @@ const TaskBtn = styled.div`
   gap: 15px;
   box-shadow: 0px 4px 4px 0px #00000040;
 `;
-
+const plantBtn = styled.button`
+  background: conic-gradient(
+    from 77.05deg at 52.42% 60.94%,
+    #8fdec6 0deg,
+    #96dcc7 9.4deg,
+    #b2e7ca 159.84deg,
+    #eafee7 210.24deg,
+    #dcf3da 242.64deg,
+    #dffadc 266.04deg,
+    #ddfcea 296.64deg,
+    #8fdec6 360deg
+  );
+  font-family: "GowunBatang";
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  width: 174px;
+  height: 41px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px 0px #00000040;
+`;
 export {
+  plantBtn,
   Background,
   Table,
   HeaderCell,

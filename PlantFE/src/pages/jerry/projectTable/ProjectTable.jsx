@@ -1,20 +1,9 @@
 import * as S from "./ProjectTable.styled";
 import ProjectList from "./ProjectList";
 import TeamList from "./TeamList";
-import { apiGetProjectListData } from "../apis/mypageApis";
-import { useEffect, useState } from "react";
 
-const ProjectTable = ({ selectedView, isModal, setIsModal }) => {
-  const [apiRes, setapiRes] = useState("");
-  useEffect(() => {
-    const getData = async () => {
-      const apiRes = await apiGetProjectListData("all");
-      console.log(apiRes);
-      setapiRes(apiRes);
-    };
-    getData();
-  }, []);
-  console.log(apiRes[0]);
+const ProjectTable = ({ selectedView, isModal, setIsModal, projectList }) => {
+  console.log(projectList);
   return (
     <>
       <S.Background>
@@ -26,13 +15,18 @@ const ProjectTable = ({ selectedView, isModal, setIsModal }) => {
             <S.HeaderCell>팀원</S.HeaderCell>
             <S.HeaderCell>완성도</S.HeaderCell>
             <S.HeaderCell>plant</S.HeaderCell>
-            {apiRes.map((item, idx) => (
-              <ProjectList key={idx} {...item} />
-            ))}
+            {projectList &&
+              projectList?.map((item, idx) => (
+                <ProjectList key={idx} {...item} />
+              ))}
           </S.Table>
         ) : (
           <S.Table>
-            <TeamList isModal={isModal} setIsModal={setIsModal} />
+            <TeamList
+              isModal={isModal}
+              setIsModal={setIsModal}
+              projectList={projectList}
+            />
           </S.Table>
         )}
       </S.Background>

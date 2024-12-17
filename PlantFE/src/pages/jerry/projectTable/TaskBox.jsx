@@ -3,19 +3,23 @@ import * as S from "./ProjectTable.styled";
 import { IoIosRemoveCircle } from "react-icons/io";
 import TaskModal from "../modal/TaskModal";
 
-const TaskBox = ({ isModal, setIsModal }) => {
-  // console.log(setIsModal, "a");
+const TaskBox = (props) => {
+  // console.log(task);
+  const { isModal, setIsModal, task } = props;
+  console.log(props);
 
   return (
-    <S.TaskBtn
-      onClick={() => setIsModal(true)}
-      isModal={isModal}
-      setIsModal={true}
-    >
-      <IoIosRemoveCircle color="red" size="25px" />
-      Usecase 최종
-      <S.Circle />
-    </S.TaskBtn>
+    task && (
+      <S.TaskBtn
+        onClick={() => setIsModal(true)}
+        isModal={isModal}
+        setIsModal={true}
+      >
+        <IoIosRemoveCircle color="red" size="25px" />
+        {task.taskName}
+        <S.Circle />
+      </S.TaskBtn>
+    )
   );
 };
 

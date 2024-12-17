@@ -63,7 +63,7 @@ const axiosAuthApi = (url) => {
     //리퀘스트 보낼때 인터셉트해버림
     async (config) => {
       const accessToken = localStorage.getItem("accessToken");
-      console.log("accessToken:", accessToken);
+      // console.log("accessToken:", accessToken);
       if (accessToken) {
         config.headers.Authorization = `Bearer ${accessToken}`;
       }

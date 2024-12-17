@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Condition from "../../Condition/Condition";
 import { ShowCondition } from "../../Condition/Condition.styled";
 import Dropdown from "../dropdown/Dropdown";
@@ -6,14 +6,23 @@ import ProjectTable from "../projectTable/ProjectTable";
 import Sidebar from "../sidebar/Sidebar";
 import * as S from "./MyPage.styled";
 import TaskModal from "../modal/TaskModal";
+import { apiGetProjectListData } from "../apis/mypageApis";
 
 const MyPage = () => {
   const [selectedView, setSelectedView] = useState(true);
   //true면 project테이블, false면 teamlist테이블 보이기
   const [isModal, setIsModal] = useState(false);
-
+  const [projectList, setProjectList] = useState("");
   // console.log(selectedView, setSelectedView);
   // console.log(isModal);
+  useEffect(() => {
+    const getData = async () => {
+      const apiRes = await apiGetProjectListData("all");
+      console.log("api", apiRes);
+      setProjectList(apiRes);
+    };
+    getData();
+  }, []);
 
   return (
     <S.Container>
@@ -23,7 +32,7 @@ const MyPage = () => {
       <S.Line />
       <S.Main>
         <S.SortBtnLst>
-          <Dropdown />
+          {selectedView ? <Dropdown /> : <div>123</div>}
         </S.SortBtnLst>
         <S.ConditionBar>
           <Condition
@@ -37,6 +46,7 @@ const MyPage = () => {
             setSelectedView={setSelectedView}
             isModal={isModal}
             setIsModal={setIsModal}
+            projectList={projectList}
           />
         </S.MainContentBox>
         {isModal ? (

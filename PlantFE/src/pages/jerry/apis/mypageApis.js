@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { authInstance } from "../../../api/jerry/axios.instance";
 
 // 유저 정보 불러오기
@@ -5,7 +6,7 @@ export const apiGetUserData = async () => {
   const reqUrl = `/users/info/`;
   try {
     const apiRes = await authInstance.get(reqUrl);
-    console.log(apiRes);
+    // console.log(apiRes);
     // return mockProjectResponse?.data;
     return apiRes.data.data;
   } catch (error) {
@@ -19,8 +20,7 @@ export const apiGetProjectListData = async (option = "all") => {
   const reqUrl = `/projects/info/${option}`;
   try {
     const apiRes = await authInstance.get(reqUrl);
-    console.log(apiRes);
-    // return mockProjectResponse?.data;
+    // console.log(apiRes);
     return apiRes.data.data;
   } catch (error) {
     console.log(error);
