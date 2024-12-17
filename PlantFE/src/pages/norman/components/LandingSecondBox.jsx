@@ -29,14 +29,14 @@ const ScrollBox = styled.div`
   background-color: rgba(0, 0, 0, 0.8);
 
   p {
-    font-family: "Cafe24Shiningstar";
-    font-size: 5rem;
-    font-weight: 400;
+    font-family: "GowunBatang-Regular";
+    font-size: 4.5vw;
+    /* font-weight: 400; */
     color: white;
     margin-bottom: 20px;
-    font-weight: bold;
+    /* font-weight: bold; */
     position: relative;
-    left: -15vw;
+    left: -10vw;
   }
 `;
 

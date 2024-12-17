@@ -6,7 +6,7 @@ function LandingThirdBox() {
     <Container>
       <ScrollBox>
         <ScrollBox2ContentBox>
-          <ScrollBox2ContentBoxWrapper>
+          <ScrollBox2ContentBoxWrapper $isBorder={true}>
             <p>캘린더별 일정 정리</p>
             <img src="/landing_calendar.png" />
           </ScrollBox2ContentBoxWrapper>
@@ -36,6 +36,7 @@ const ScrollBox = styled.div`
   align-items: center;
   width: 100%;
   height: 100vh;
+  padding-top: 15vh;
   background-color: rgba(0, 0, 0, 0.8);
 
   p {
@@ -54,27 +55,30 @@ const ScrollBox2ContentBox = styled.div`
 `;
 
 const ScrollBox2Footer = styled.div`
-  font-family: "Cafe24Shiningstar";
-  font-size: 5vw;
+  margin-top: 50px;
+  font-family: "GowunBatang-Regular";
+  font-size: 4.5vw;
   color: white;
 `;
 
 const ScrollBox2ContentBoxWrapper = styled.div`
-  font-size: 22px;
+  font-family: "EliceDigitalBaeum-Bd";
   text-align: center;
   color: white;
-  margin-right: 20px;
+  padding: 25px 20px;
+  border-right: ${(props) =>
+    props.$isBorder ? "3px solid rgba(217, 217, 217, 1)" : "none"};
   img {
     background-image: url("/landing_calendar.png");
     background-repeat: no-repeat; // background-image가 컨테이너를 가득 채우지 못할 경우에도 반복하지 않는다.
     background-size: cover; // 사이즈가 container에 맞지 않아도 꽉 차도록 채운다.
     background-position: center; // background-image가 컨테이너에 가운데로 오도록 한다.
-    width: 100%;
-    height: 100%;
+    width: 40vw;
+    /* height: 100%; */
     border-radius: 10px;
   }
   p {
-    font-size: 1.5vw;
+    font-size: 2vw;
   }
 `;
 
