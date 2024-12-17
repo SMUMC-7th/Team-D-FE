@@ -17,8 +17,8 @@ const TeamMakePage = () => {
 
   const schema = yup.object().shape({
     projectName: yup.string().required(),
-    startDate: yup.date().required(),
-    endDate: yup.date().required(),
+    startDate: yup.date().required().min(new Date(1900, 0, 1)),
+    endDate: yup.date().required().min(new Date(1900, 0, 1)),
     teamMembers: yup
       .array()
       .of(yup.string().required())

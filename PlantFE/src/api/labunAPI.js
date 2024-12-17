@@ -5,25 +5,25 @@ const PostSignup = async (data) => {
     userId: data.id,
     userName: data.lastName + data.firstName,
     userPassword: data.password,
-    uerEmail: data.email,
+    userEmail: data.email,
     gender: data.gender,
     birth: data.birth,
   });
-  return response.data;
+
+  return response;
 };
 
 const GetDuplicateID = async (data) => {
-  const response = await authInstance.get(
-    `/users/sign/up/duplicate/${data.userId}`
-  );
+  const response = await authInstance.get(`/users/sign/up/duplicate/${data}`);
   return response.data;
 };
 
 const PostLogin = async (data) => {
-  const response = await defaultInstance.post("/users/login", {
+  const response = await defaultInstance.post("/users/auth/login", {
     userId: data.id,
     userPassword: data.password,
   });
+  console.log("로그인 API 응답 ", response);
   return response.data;
 };
 

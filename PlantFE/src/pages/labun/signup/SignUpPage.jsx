@@ -50,7 +50,7 @@ const SignUpPage = () => {
     firstName: yup.string().required(),
     email: yup.string().email().required(),
     gender: yup.string().required(),
-    birth: yup.string().required().min(new Date(1900, 0, 1)).max(new Date()),
+    birth: yup.date().required().min(new Date(1900, 0, 1)).max(new Date()),
     all: yup.boolean(),
     personalInfo: yup
       .boolean()
@@ -71,6 +71,7 @@ const SignUpPage = () => {
     mode: "onChange",
   });
 
+  //회원가입 데이터 전송
   const {
     mutate: PostSignUPMutation,
     isError,
@@ -86,12 +87,13 @@ const SignUpPage = () => {
   });
 
   //아이디 중복 확인
-  const handleDuplicateCheck = () => {
+  const handleDuplicateCheck = async () => {
     const idValue = watch("id");
     if (idValue?.trim()) {
-      const response = GetDuplicateID(idValue);
-      console.log(response);
-      setIdValue(response);
+      const response = await GetDuplicateID(idValue);
+
+      console.log("아이디 중복 응답", response["data"]);
+      setIdValue(response["data"]);
     } else {
       alert("아이디를 입력해주세요");
     }
@@ -99,18 +101,23 @@ const SignUpPage = () => {
 
   const onSubmit = async (data) => {
     console.log("데이터 제출 : ", data);
-    PostSignUPMutation(data);
+    try {
+      const response = await PostSignUPMutation(data);
+      console.log("데이터 제출 성공", response);
+    } catch (error) {
+      console.error("회원가입 실패", error);
+    }
   };
 
   //약관동의
   const handleAllCheck = () => {
     // setAllCheck((prev) => !prev);
     const allChecked = getValues("all");
-    console.log(getValues("all"));
+    //console.log(getValues("all"));
     setValue("personalInfo", allChecked);
     setValue("termsOfService", allChecked);
     setValue("age", allChecked);
-    console.log("전체동의 상태", allChecked);
+    //console.log("전체동의 상태", allChecked);
   };
 
   const handlePersonalEvent = () => {
@@ -163,9 +170,9 @@ const SignUpPage = () => {
             <S.Button onClick={handleDuplicateCheck}>중복 확인</S.Button>
             {IdValue === "Duplicate" ? (
               <S.Duplicate>중복된 아이디입니다.</S.Duplicate>
-            ) : (
+            ) : IdValue === "notDuplicate" ? (
               <S.notDuplicate>사용 가능한 아이디입니다.</S.notDuplicate>
-            )}
+            ) : null}
           </S.InputBox>
         </div>
         <div>
