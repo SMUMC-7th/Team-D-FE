@@ -57,7 +57,7 @@ const TeamMakePage = () => {
     return () => {
       setProjectCreate(false);
     };
-  }, []);
+  }, [setProjectCreate]);
 
   const onSubmit = async (data) => {
     const formattedData = {
