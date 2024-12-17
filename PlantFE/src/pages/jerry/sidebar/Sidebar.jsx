@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import * as S from "./sidebar.styled";
 import { authInstance } from "../../../api/norman/axiosInstance";
 import { apiGetUserData } from "../../../api/norman/plantApis";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   const [userInfo, setUserInfo] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getData = async () => {
@@ -41,7 +43,7 @@ const Sidebar = () => {
         <S.NavText>프로젝트 관리</S.NavText>
         <S.NavText>나의 캘린더</S.NavText>
         <S.NavText>내 정보</S.NavText>
-        <S.NavText>Goal 등록</S.NavText>
+        <S.NavText onClick={() => navigate("/register")}>Goal 등록</S.NavText>
         <S.NavText>회원 탈퇴</S.NavText>
       </S.TextLst>
     </S.Container>

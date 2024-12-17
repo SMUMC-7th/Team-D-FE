@@ -1,1 +1,2 @@
 /*    /index.html   200
+/api/* http://umc-d.kro.kr:3000/:splat 200
