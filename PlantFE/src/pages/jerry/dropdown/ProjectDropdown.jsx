@@ -1,17 +1,15 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import * as S from "./Dropdown.styled";
 import { IoIosArrowDown } from "react-icons/io";
 
-const Dropdown = () => {
+const ProjectDropdown = ({ currentState, setcurrentState }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [currentState, setCurrentState] = useState("모두 보기");
-
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
   const handleMenuItemClick = (state) => {
-    setCurrentState(state);
+    setcurrentState(state);
     setIsOpen(false);
   };
 
@@ -24,18 +22,12 @@ const Dropdown = () => {
         </S.IconContainer>
       </S.DropdownButton>
       <S.DropdownMenu isOpen={isOpen}>
-        <S.MenuItem onClick={() => handleMenuItemClick("진행 중")}>
-          진행 중
-        </S.MenuItem>
-        <S.MenuItem onClick={() => handleMenuItemClick("완료")}>
-          완료
-        </S.MenuItem>
-        <S.MenuItem onClick={() => handleMenuItemClick("모두 보기")}>
-          모두 보기
-        </S.MenuItem>
+        <S.MenuItem onClick={() => handleMenuItemClick("A")}>A</S.MenuItem>
+        <S.MenuItem onClick={() => handleMenuItemClick("B")}>B</S.MenuItem>
+        <S.MenuItem onClick={() => handleMenuItemClick("C")}>C</S.MenuItem>
       </S.DropdownMenu>
     </S.DropdownContainer>
   );
 };
 
-export default Dropdown;
+export default ProjectDropdown;

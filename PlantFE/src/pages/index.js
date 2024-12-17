@@ -6,3 +6,5 @@ export { default as MyPage } from "./jerry/mypage/MyPage";
 export { default as CurrentPage } from "./jerry/current/CurrentPage";
 export { default as PlantPage } from "./norman/plant/PlantPage";
 export { default as ErrorPage } from "./error/ErrorPage";
+
+export { default as PlantBookPage } from "./labun/plantbook/Plantbook";
