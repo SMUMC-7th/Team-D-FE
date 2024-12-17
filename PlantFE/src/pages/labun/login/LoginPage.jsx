@@ -12,7 +12,7 @@ import { useAuthContext } from "../../../context/AuthContext";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { setIsLogin, setUserId, userId } = useAuthContext();
+  const { setIsLogin, setUserId } = useAuthContext();
 
   const schema = yup.object().shape({
     id: yup.string().required("아이디를 반드시 입력해주세요."),
@@ -38,12 +38,11 @@ const LoginPage = () => {
     onSuccess: (response) => {
       console.log("데이터 제출 성공", response.data);
       setIsLogin(true);
-
+      console.log(response.data.userId);
       setUserId(response.data.userId);
-
       localStorage.setItem("accessToken", response.data.token);
-      console.log("로그인 userId", userId);
-      navigate(`/mypage/${userId}`);
+
+      navigate(`/mypage/${response.data.userId}`);
     },
   });
 

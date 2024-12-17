@@ -10,6 +10,17 @@ import {
   ErrorPage,
   PlantBookPage,
 } from "../pages/index";
+import { useAuthContext } from "../context/AuthContext";
+import { Navigate } from "react-router-dom";
+
+const UserRoute = ({ children }) => {
+  const { isLogin } = useAuthContext();
+  if (isLogin === false) {
+    alert("로그인을 해주세요.");
+    return <Navigate to="/login" replace />;
+  }
+  return children;
+};
 
 const Router = [
   {
@@ -30,23 +41,43 @@ const Router = [
       },
       {
         path: "/register",
-        element: <TeamMakePage />,
+        element: (
+          <UserRoute>
+            <TeamMakePage />
+          </UserRoute>
+        ),
       },
       {
         path: "/mypage/:userId",
-        element: <MyPage />,
+        element: (
+          <UserRoute>
+            <MyPage />
+          </UserRoute>
+        ),
       },
       {
         path: "/team/current/:teamId",
-        element: <CurrentPage />,
+        element: (
+          <UserRoute>
+            <CurrentPage />
+          </UserRoute>
+        ),
       },
       {
         path: "/team/plant/:teamId",
-        element: <PlantPage />,
+        element: (
+          <UserRoute>
+            <PlantPage />
+          </UserRoute>
+        ),
       },
       {
         path: "/mypage/:userId/plantbook",
-        element: <PlantBookPage />,
+        element: (
+          <UserRoute>
+            <PlantBookPage />
+          </UserRoute>
+        ),
       },
     ],
     errorElement: <ErrorPage />,
