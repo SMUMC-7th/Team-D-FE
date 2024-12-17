@@ -2,7 +2,7 @@ import * as S from "./SiginUpPage.style";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { PostSignup, GetDuplicateID } from "../../../api/labunAPI";
@@ -19,7 +19,7 @@ const SignUpPage = () => {
     const templateParams = {
       to_email: email,
       from_name: "PLANTEAM",
-      message: "인증되었습니다.",
+      message: "인증되었습니다. ",
     };
     emailjs
       .send(
@@ -51,6 +51,7 @@ const SignUpPage = () => {
     email: yup.string().email().required(),
     gender: yup.string().required(),
     birth: yup.string().required().min(new Date(1900, 0, 1)).max(new Date()),
+    all: yup.boolean(),
     personalInfo: yup
       .boolean()
       .oneOf([true], "개인정보 수집 및 이용 동의가 필요합니다."),
@@ -101,6 +102,39 @@ const SignUpPage = () => {
     PostSignUPMutation(data);
   };
 
+  //약관동의
+  const handleAllCheck = () => {
+    // setAllCheck((prev) => !prev);
+    const allChecked = getValues("all");
+    console.log(getValues("all"));
+    setValue("personalInfo", allChecked);
+    setValue("termsOfService", allChecked);
+    setValue("age", allChecked);
+    console.log("전체동의 상태", allChecked);
+  };
+
+  const handlePersonalEvent = () => {
+    setValue("personalInfo", (prev) => !prev);
+    console.log("개인정보동의", getValues("personalInfo"));
+  };
+  const handleTermsEvent = () => {
+    setValue("termsOfService", (prev) => !prev);
+  };
+  const handleAgeEvent = () => {
+    setValue("age", (prev) => !prev);
+  };
+  // const personal = watch("personalInfo");
+  // const terms = watch("termsOfService");
+  // const age = watch("age");
+
+  // useEffect(() => {
+  //   const allState = personal && terms && age;
+  //   console.log(allState, personal, terms, age);
+  //   if (allState) {
+  //     setValue("all", true);
+  //   }
+  // }, [personal, terms, age]);
+
   if (isPending) {
     return <h1>로딩중</h1>;
   }
@@ -127,7 +161,11 @@ const SignUpPage = () => {
               style={{ width: "150px" }}
             />
             <S.Button onClick={handleDuplicateCheck}>중복 확인</S.Button>
-            <p>{IdValue}</p>
+            {IdValue === "Duplicate" ? (
+              <S.Duplicate>중복된 아이디입니다.</S.Duplicate>
+            ) : (
+              <S.notDuplicate>사용 가능한 아이디입니다.</S.notDuplicate>
+            )}
           </S.InputBox>
         </div>
         <div>
@@ -208,48 +246,42 @@ const SignUpPage = () => {
               <label>
                 <input
                   type={"checkbox"}
-                  onChange={(e) => {
-                    const isChecked = e.target.checked;
-
-                    // setValue("personalInfo", isChecked);
-                    // setValue("termsOfService", isChecked);
-                    // setValue("age", isChecked);
-                    const allCheck =
-                      getValues("personalInfo") &&
-                      getValues("termsOfService") &&
-                      getValues("age");
-
-                    if (allCheck === false) {
-                      setValue("personalInfo", true);
-                      setValue("termsOfService", true);
-                      setValue("age", true);
-                    } else {
-                      setValue("personalInfo", false);
-                      setValue("termsOfService", false);
-                      setValue("age", false);
-                    }
-                  }}
+                  // onChange={() => handleAllCheck()}
+                  {...register("all", { onChange: () => handleAllCheck() })}
                 />
                 전체 동의합니다.
               </label>
             </div>
             <div className="TermsInputBox_Container">
               <label>
-                <input type={"checkbox"} {...register("personalInfo")} />
+                <input
+                  type={"checkbox"}
+                  {...register("personalInfo", {
+                    onChange: () => handlePersonalEvent(),
+                  })}
+                />
                 개인정보 수집 및 이용 동의
               </label>
               <a href="">약관 보기</a>
             </div>
             <div className="TermsInputBox_Container">
               <label>
-                <input type={"checkbox"} {...register("termsOfService")} />
+                <input
+                  type={"checkbox"}
+                  {...register("termsOfService", {
+                    onChange: () => handleTermsEvent(),
+                  })}
+                />
                 이용약관 동의(필수)
               </label>
               <a href="">약관 보기</a>
             </div>
             <div className="TermsInputBox_Container">
               <label>
-                <input type={"checkbox"} {...register("age")} />
+                <input
+                  type={"checkbox"}
+                  {...register("age", { onChange: () => handleAgeEvent() })}
+                />
                 본인은 만 14세 이상입니다.
               </label>
               <a href="">약관 보기</a>

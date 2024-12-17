@@ -1,3 +1,4 @@
+import { style } from "framer-motion/client";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -80,6 +81,26 @@ const P = styled.p`
   font-style: normal;
   font-weight: 400;
   line-height: 140.625%; /* 21.094px */
+`;
+
+const Duplicate = styled.p`
+  color: #ee3131;
+  text-align: center;
+  font-family: "Roboto Serif";
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140.625%;
+`;
+
+const notDuplicate = styled.p`
+  color: #328430;
+  text-align: center;
+  font-family: "Roboto Serif";
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140.625%;
 `;
 const InputBox = styled.div`
   gap: 10px;
@@ -223,6 +244,8 @@ export {
   TitleText,
   Login,
   P,
+  Duplicate,
+  notDuplicate,
   InputBox,
   Input,
   TermsInputBox,
