@@ -2,15 +2,15 @@ import * as S from "./ProjectTable.styled";
 import { SlPencil } from "react-icons/sl";
 import TaskBox from "./TaskBox";
 
-const ProjectTable_teamlist = () => {
+const TeamList = ({ isModal, setIsModal }) => {
   return (
     <S.TeamTable>
       <S.TeamTasklist>
         <S.HeaderCell style={{ border: "none", fontSize: "30px" }}>
           나재호 <SlPencil style={{ width: "15px" }} />
         </S.HeaderCell>
-        <TaskBox />
-        <TaskBox />
+        <TaskBox isModal={isModal} setIsModal={setIsModal} />
+        <TaskBox isModal={isModal} setIsModal={setIsModal} />
       </S.TeamTasklist>
       <S.TeamTasklist>
         <S.HeaderCell style={{ border: "none", fontSize: "30px" }}>
@@ -30,4 +30,4 @@ const ProjectTable_teamlist = () => {
   );
 };
 
-export default ProjectTable_teamlist;
+export default TeamList;

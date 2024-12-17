@@ -29,6 +29,8 @@ const Button = styled.button`
   width: 38px;
   height: 36px;
   background-color: white;
+  opacity: ${(props) => props.bcg || "none"};
+  border: 1px solid lightgray;
 `;
 
 export { ShowCondition, Circle, RowWrapper, Button };

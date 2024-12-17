@@ -2,7 +2,7 @@ import styled from "styled-components";
 import TaskBox from "./TaskBox";
 
 const Background = styled.div`
-  height: 100%;
+  height: 650px;
   border-radius: 20px;
   background-color: white;
   position: relative;
@@ -68,6 +68,7 @@ const TeamTable = styled.section`
 const TeamTasklist = styled.div`
   display: flex;
   flex-direction: column;
+  height: 620px;
   gap: 15px;
   padding: 15px;
   border-right: 1px solid gray;

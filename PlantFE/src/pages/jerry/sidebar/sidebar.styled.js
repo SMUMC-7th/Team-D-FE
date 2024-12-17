@@ -7,7 +7,7 @@ const Container = styled.div`
   height: 100%;
   margin: 10px;
   padding: 10px;
-  gap: 5px;
+  gap: 15px;
 `;
 const Header = styled.h1`
   font-family: Roboto Serif;
@@ -38,6 +38,7 @@ const ColumnWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   margin: 5px;
+  gap: 10px;
 `;
 const RowWrapper = styled.div`
   display: flex;
@@ -66,6 +67,7 @@ const TextLst = styled.div`
   flex-direction: column;
   align-items: start;
   margin: 8px;
+  gap: 15px;
 `;
 const NavText = styled.div`
   //추후에 link로 교체필요

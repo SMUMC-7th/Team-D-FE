@@ -3,17 +3,23 @@ import { CiStar } from "react-icons/ci";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { IoIosRemoveCircle } from "react-icons/io";
 
-const ProjectTable_project = () => {
+const ProjectList = ({
+  startDate,
+  endDate,
+  projectName,
+  totalProgress,
+  teamMembers,
+}) => {
   return (
     <>
       {/* 프로젝트명 */}
       <S.Cell size="22px">
-        <CiStar /> Mini project
+        <CiStar /> {projectName}
       </S.Cell>
 
       {/* 기간 */}
       <S.Cell size="22px">
-        2024.10.01~11.15 <FaRegCalendarAlt />
+        {startDate}~{endDate} <FaRegCalendarAlt />
       </S.Cell>
 
       {/* 나의 역할 */}
@@ -23,11 +29,12 @@ const ProjectTable_project = () => {
 
       {/* 팀원명 */}
       <S.Cell>
-        송병호 <IoIosRemoveCircle color="red" />
+        {teamMembers}
+        <IoIosRemoveCircle color="red" />
       </S.Cell>
 
       {/* 완성도 */}
-      <S.Cell size="30px">78%</S.Cell>
+      <S.Cell size="30px">{totalProgress}</S.Cell>
 
       {/* plant */}
       <S.Cell>식물이름[매화] 식물현황</S.Cell>
@@ -35,4 +42,4 @@ const ProjectTable_project = () => {
   );
 };
 
-export default ProjectTable_project;
+export default ProjectList;
