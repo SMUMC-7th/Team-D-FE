@@ -5,21 +5,58 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { FaUser } from "react-icons/fa";
 import { CiLock } from "react-icons/ci";
 import { PiPlant } from "react-icons/pi";
+import { useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import { PostLogin } from "../../../api/labunAPI";
+import { useAuthContext } from "../../../context/AuthContext";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const { setIsLogin, setUserId } = useAuthContext();
+
   const schema = yup.object().shape({
     id: yup.string().required("아이디를 반드시 입력해주세요."),
     password: yup.string().required(),
   });
 
-  const { register, handleSubmit } = useForm({
+  const {
+    register,
+    handleSubmit,
+
+    formState: { isValid },
+  } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
+
+  const {
+    mutate: PostLoginMutation,
+    isError,
+    isPending,
+  } = useMutation({
+    mutationFn: PostLogin,
+    onSuccess: (response) => {
+      console.log("데이터 제출 성공", response.data);
+      setIsLogin(true);
+      console.log(response.data.userId);
+      setUserId(response.data.userId);
+      localStorage.setItem("accessToken", response.data.token);
+
+      navigate(`/mypage/${response.data.userId}`);
+    },
+  });
+
   const onSubmit = (data) => {
-    console.log("폼 데이터 제출");
-    console.log(data);
+    console.log("폼 데이터 제출", data);
+    PostLoginMutation(data);
   };
+
+  if (isPending) {
+    return <h1>로딩중</h1>;
+  }
+  if (isError) {
+    return <h1>에러!!</h1>;
+  }
 
   return (
     <S.Container>
@@ -45,7 +82,16 @@ const LoginPage = () => {
           <p> | </p>
           <p>비밀번호 찾기</p>
         </S.SearchID_PW>
-        <S.Button>LOGIN</S.Button>
+        <S.Button
+          disabled={!isValid}
+          style={{
+            background: isValid
+              ? "linear-gradient(to left top, rgba(150, 220, 199, 0.91), rgba(178, 231, 202, 0.91), rgba(234, 254, 231, 0.91), rgba(220, 243, 218, 0.91))"
+              : "gray",
+          }}
+        >
+          LOGIN
+        </S.Button>
       </form>
 
       <S.Signup>

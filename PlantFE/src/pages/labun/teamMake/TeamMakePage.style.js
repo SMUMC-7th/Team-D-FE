@@ -69,6 +69,7 @@ const P = styled.p`
 const MemberBox = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   margin-left: 20px;
   p {
@@ -79,6 +80,11 @@ const MemberBox = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: 140.625%;
+  }
+  button {
+    background: none;
+    border: none;
+    color: gray;
   }
 `;
 
@@ -132,10 +138,16 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  border-radius: 7px;
-  border: 1px solid #9c9c9c;
-  background: rgba(187, 212, 185, 0.25);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0);
+  background: linear-gradient(
+    to left top,
+    rgba(150, 220, 199, 0.91),
+    rgba(178, 231, 202, 0.91),
+    rgba(234, 254, 231, 0.91),
+    rgba(220, 243, 218, 0.91)
+  );
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 5px 10px;
 
   color: #4f4949;
