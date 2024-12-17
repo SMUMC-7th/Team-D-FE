@@ -22,6 +22,7 @@ const LoginPage = () => {
   const {
     register,
     handleSubmit,
+
     formState: { isValid },
   } = useForm({
     resolver: yupResolver(schema),
@@ -35,11 +36,13 @@ const LoginPage = () => {
   } = useMutation({
     mutationFn: PostLogin,
     onSuccess: (response) => {
-      console.log("데이터 제출 성공");
+      console.log("데이터 제출 성공", response.data);
       setIsLogin(true);
-      localStorage.setItem("accessToken", response.accessToken);
-      localStorage.setItem("refreshToken", response.refreshToken);
-      navigate("/");
+      console.log(response.data.userId);
+
+      localStorage.setItem("accessToken", response.data.token);
+      console.log("로그인 userId", response.data.userId);
+      navigate(`/mypage/${response.data.userId}`);
     },
   });
 
