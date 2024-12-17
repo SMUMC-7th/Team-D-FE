@@ -2,7 +2,7 @@ import * as S from "./SiginUpPage.style";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { PostSignup, GetDuplicateID } from "../../../api/labunAPI";

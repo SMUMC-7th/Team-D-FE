@@ -2,10 +2,11 @@ import * as S from "./TeamMakePage.style";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PostProject } from "../../../api/labunAPI";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
+import { useAuthContext } from "../../../context/AuthContext";
 
 const TeamMakePage = () => {
   const navigate = useNavigate();
@@ -14,11 +15,12 @@ const TeamMakePage = () => {
     { id: Date.now(), name: "", registered: false },
   ]);
   const [membersId, setMembersId] = useState([]);
+  const { userId, setProjectCreate } = useAuthContext();
 
   const schema = yup.object().shape({
     projectName: yup.string().required(),
-    startDate: yup.date().required().min(new Date(1900, 0, 1)),
-    endDate: yup.date().required().min(new Date(1900, 0, 1)),
+    startDate: yup.date().required(),
+    endDate: yup.date().required(),
     teamMembers: yup
       .array()
       .of(yup.string().required())
@@ -32,9 +34,9 @@ const TeamMakePage = () => {
     isPending,
   } = useMutation({
     mutationFn: PostProject,
-    onSuccess: () => {
-      console.log("데이터 제출 성공");
-      navigate("/");
+    onSuccess: (response) => {
+      console.log("데이터 제출 성공", response);
+      navigate(`/mypage/${userId}`);
     },
   });
   const {
@@ -49,6 +51,13 @@ const TeamMakePage = () => {
       teamMembers: [],
     },
   });
+
+  useEffect(() => {
+    setProjectCreate(true);
+    return () => {
+      setProjectCreate(false);
+    };
+  }, []);
 
   const onSubmit = async (data) => {
     const formattedData = {

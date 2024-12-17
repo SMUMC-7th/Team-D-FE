@@ -1,4 +1,3 @@
-import { useAuthContext } from "../context/AuthContext";
 import { authInstance, defaultInstance } from "./axiosInstance_labun";
 
 const PostSignup = async (data) => {
@@ -29,13 +28,14 @@ const PostLogin = async (data) => {
 };
 
 const PostProject = async (data) => {
-  const response = await defaultInstance.post("/projects/projectMake", {
+  const response = await authInstance.post("/projects/projectMake", {
     projectName: data.projectName,
     startDate: data.startDate,
     endDate: data.endDate,
-    teamMembers: data.teamMembers,
+    teamMemberIds: data.teamMembers,
   });
-  return response.data;
+  console.log("프로젝트 생성 API 응답", response);
+  return response;
 };
 
 const GetPlantBook = async () => {
