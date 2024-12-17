@@ -39,24 +39,24 @@ const ProjectList = ({
       </S.Cell>
 
       {/* 나의 역할 */}
-      <S.Cell>
-        {/* {console.log("1111111111", tasks)} */}
-
+      <S.Cell isTasksCell={true} row="column">
         {tasks &&
           tasks?.map((task, idx) => {
-            <span key={idx}>
-              <S.Circle />
-              {task.taskName}
-              <IoIosRemoveCircle color="red" />
-            </span>;
+            return (
+              <S.Span key={idx}>
+                <S.Circle />
+                {task.taskName}
+                <IoIosRemoveCircle color="red" />
+              </S.Span>
+            );
           })}
       </S.Cell>
 
       {/* 팀원명 */}
       <S.Cell row="column">
-        {teamMembers.map((item, idx) => (
+        {teamMembers.map((member, idx) => (
           <span key={idx}>
-            {item}
+            {member.userName}
             <IoIosRemoveCircle color="red" />
           </span>
         ))}

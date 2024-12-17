@@ -7,14 +7,16 @@ import Sidebar from "../sidebar/Sidebar";
 import * as S from "./MyPage.styled";
 import TaskModal from "../modal/TaskModal";
 import { apiGetProjectListData } from "../apis/mypageApis";
+import ProjectDropdown from "../dropdown/ProjectDropdown";
 
 const MyPage = () => {
   const [selectedView, setSelectedView] = useState(true);
   //true면 project테이블, false면 teamlist테이블 보이기
   const [isModal, setIsModal] = useState(false);
+  //모달창 여는 toggle상태 관리리
   const [projectList, setProjectList] = useState("");
-  // console.log(selectedView, setSelectedView);
-  // console.log(isModal);
+  //getProject를 통해서 가져온 api의 데이터관리
+  const [currentState, setcurrentState] = useState("A"); // dropdownProject로 props 전달
   useEffect(() => {
     const getData = async () => {
       const apiRes = await apiGetProjectListData("all");
@@ -32,7 +34,14 @@ const MyPage = () => {
       <S.Line />
       <S.Main>
         <S.SortBtnLst>
-          {selectedView ? <Dropdown /> : <div>123</div>}
+          {selectedView ? (
+            <Dropdown />
+          ) : (
+            <ProjectDropdown
+              currentState={currentState}
+              setcurrentState={setcurrentState}
+            />
+          )}
         </S.SortBtnLst>
         <S.ConditionBar>
           <Condition
@@ -47,6 +56,8 @@ const MyPage = () => {
             isModal={isModal}
             setIsModal={setIsModal}
             projectList={projectList}
+            currentState={currentState}
+            setcurrentState={setcurrentState}
           />
         </S.MainContentBox>
         {isModal ? (

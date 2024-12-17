@@ -2,7 +2,14 @@ import * as S from "./ProjectTable.styled";
 import ProjectList from "./ProjectList";
 import TeamList from "./TeamList";
 
-const ProjectTable = ({ selectedView, isModal, setIsModal, projectList }) => {
+const ProjectTable = ({
+  selectedView,
+  isModal,
+  setIsModal,
+  projectList,
+  currentState,
+  setcurrentState,
+}) => {
   console.log(projectList);
   return (
     <>
@@ -26,6 +33,8 @@ const ProjectTable = ({ selectedView, isModal, setIsModal, projectList }) => {
               isModal={isModal}
               setIsModal={setIsModal}
               projectList={projectList}
+              currentState={currentState}
+              setcurrentState={setcurrentState}
             />
           </S.Table>
         )}
