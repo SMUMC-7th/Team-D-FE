@@ -29,7 +29,7 @@ const ScrollBox = styled.div`
   background-color: rgba(0, 0, 0, 0.8);
 
   p {
-    font-family: "Cafe24Oneprettynight";
+    font-family: "GowunBatang-Regular";
     font-size: 4.5vw;
     /* font-weight: 400; */
     color: white;

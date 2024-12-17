@@ -33,7 +33,7 @@ const ScrollBox = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 90vh;
+  height: 95vh;
   background-color: rgba(0, 0, 0, 0.8);
 `;
 
@@ -53,7 +53,7 @@ const ScrollBoxContentBoxWrapper = styled.div`
   }
   div {
     width: 50%;
-    font-family: "Cafe24Oneprettynight";
+    font-family: "GowunBatang-Regular";
     display: flex;
     flex-direction: column;
     font-size: 4.5vw;

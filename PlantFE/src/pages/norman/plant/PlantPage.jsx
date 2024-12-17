@@ -4,7 +4,11 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 import Button from "./../components/Button";
 import PlantModal from "./../components/PlantModal";
 import PlantModalMain from "./../components/PlantModalMain";
-import { apiGetProjectData } from "../../../api/norman/plantApis";
+import {
+  apiGetProjectData,
+  apiGetUserData,
+} from "../../../api/norman/plantApis";
+import { useParams } from "react-router-dom";
 
 const PLANTLEVEL = {
   1: "씨앗",
@@ -21,10 +25,14 @@ const PLANT_IMG_URLS = {
 };
 
 const PlantPage = () => {
+  const { teamId } = useParams();
   // const plantData = useGetData();
-  const [plantData, setPlantData] = useState();
+  const [plantData, setPlantData] = useState(null);
   const [plantCurrentLevel, setPlantCurrentLevel] = useState(1);
   const [plantCurrentProgress, setPlantCurrentProgress] = useState(0);
+  const [isComplete, setIsComplete] = useState(false);
+  const [nextLevelCount, setNextLevelCount] = useState(0);
+
   const [isProgressModalOpen, setIsProgressModalOpen] = useState(false);
   const [isTIPModalOpen, setIsTIPModalOpen] = useState(false);
 
@@ -40,11 +48,25 @@ const PlantPage = () => {
 
   // 렌더링 시 프로젝트 상세 정보 가져옴
   useEffect(() => {
-    const apiRes = apiGetProjectData()[0]; // 프로젝트 하나 가져오는 api 필요...
-    console.log(apiRes);
-    setPlantData(apiRes);
-    setPlantCurrentLevel(Math.floor(apiRes.totalProgress / 25) + 1);
-    setPlantCurrentProgress(((apiRes.totalProgress % 25) * 4) / 100);
+    const getData = async () => {
+      const apiRes = await apiGetProjectData(teamId);
+      const currentLevel = Math.floor(apiRes.totalProgress / 25) + 1;
+      console.log(apiRes);
+      setPlantData(apiRes);
+      setPlantCurrentLevel(currentLevel);
+      setPlantCurrentProgress(((apiRes.totalProgress % 25) * 4) / 100);
+      if (apiRes.totalProgress == 100) {
+        setIsComplete(true);
+      }
+      // 34개 50% -> 다음 성장 지점은 75% -> 성장에 필요한 태스크 수 : (taskCount * currentLevel / 4) - (taskCount * 1/2)
+      setNextLevelCount(
+        Math.ceil(
+          (apiRes.taskCount * currentLevel) / 4 - (apiRes.taskCount * 1) / 2
+        )
+      );
+    };
+
+    getData();
   }, []);
 
   return (
@@ -57,7 +79,7 @@ const PlantPage = () => {
         <TopNotationBox>
           <img src="/notibook.png" alt="book" />
           <p>
-            다음 성장까지 <span>{2}</span> 개의 TASK 가 남았어요.
+            다음 성장까지 <span>{nextLevelCount}</span> 개의 TASK 가 남았어요.
           </p>
         </TopNotationBox>
       </TopBox>
@@ -85,6 +107,7 @@ const PlantPage = () => {
                 {plantData ? PLANTLEVEL[plantCurrentLevel + 1] : "대기중..."}
               </p>
             </ProgressLabelBox>
+            {isComplete && <CompleteText>complete!</CompleteText>}
           </ProgressBox>
         </MainBox>
         <SideRightBox>
@@ -103,12 +126,12 @@ const PlantPage = () => {
             <Button
               bcg={"#FFECEC"}
               textColor={"#DE8585"}
-              fontSize={"40px"}
+              fontSize={"30px"}
               borderRadius={"30px"}
               width={"100px"}
               height={"70%"}
               content={"TIP!"}
-              fontFamily={"Cafe24Shiningstar-normal"}
+              fontFamily={"GowunBatang-Regular"}
               onClickHandler={handleTIPModalToggle}
             />
           </ButtonBox>
@@ -150,7 +173,7 @@ const PlantPage = () => {
   );
 };
 
-export const Container = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -174,7 +197,7 @@ export const Container = styled.div`
   }
 `;
 
-export const TopBox = styled.div`
+const TopBox = styled.div`
   width: 100%;
   height: 20%;
   margin-top: 20px;
@@ -196,11 +219,11 @@ export const TopBox = styled.div`
   padding-bottom: 20px;
 `;
 
-export const TopBoxHeader = styled.p`
+const TopBoxHeader = styled.p`
   font-family: "Gowun Batang";
 `;
 
-export const TopNotationBox = styled.div`
+const TopNotationBox = styled.div`
   position: absolute;
   right: 1%;
   top: 23%;
@@ -231,13 +254,13 @@ export const TopNotationBox = styled.div`
   }
 `;
 
-export const MainContainer = styled.div`
+const MainContainer = styled.div`
   width: 100%;
   height: 80%;
   display: flex;
 `;
 
-export const SideLeftBox = styled.div`
+const SideLeftBox = styled.div`
   width: 25%;
   display: flex;
   flex-direction: column;
@@ -245,7 +268,7 @@ export const SideLeftBox = styled.div`
   font-family: "Gowun Batang";
 `;
 
-export const SideLeftBoxTop = styled.div`
+const SideLeftBoxTop = styled.div`
   margin-top: 20px;
   font-size: 40px;
   letter-spacing: 1em; /* 글자 간격 1em */
@@ -263,7 +286,7 @@ export const SideLeftBoxTop = styled.div`
   }
 `;
 
-export const SideLeftBoxBot = styled.ul`
+const SideLeftBoxBot = styled.ul`
   padding: 40px 10px;
   position: relative;
   li {
@@ -272,14 +295,14 @@ export const SideLeftBoxBot = styled.ul`
   }
 `;
 
-export const SideRightBox = styled.div`
+const SideRightBox = styled.div`
   width: 25%;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-export const ButtonBox = styled.div`
+const ButtonBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -288,7 +311,7 @@ export const ButtonBox = styled.div`
   gap: 20px;
 `;
 
-export const MainBox = styled.div`
+const MainBox = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -300,7 +323,7 @@ export const MainBox = styled.div`
   }
 `;
 
-export const ProgressBox = styled.div`
+const ProgressBox = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -330,7 +353,7 @@ export const ProgressBox = styled.div`
   }
 `;
 
-export const ProgressLabelBox = styled.div`
+const ProgressLabelBox = styled.div`
   width: 100%;
   display: flex;
   position: relative;
@@ -338,6 +361,20 @@ export const ProgressLabelBox = styled.div`
   font-size: 28px;
   margin-top: 20px;
   font-family: HBIOS-SYS;
+`;
+
+const CompleteText = styled.div`
+  position: relative;
+  top: -110%;
+  left: 50%;
+  color: rgba(40, 115, 76, 1);
+  font-family: "EliceDigitalBaeum-Bd";
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 50.68px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
 `;
 
 export default PlantPage;

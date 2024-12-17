@@ -13,11 +13,40 @@ export const mockProjectResponse = {
   success: true,
 };
 
-export const apiGetProjectData = () => {
-  const reqUrl = "/project/info";
+
+export const apiGetProjectData = async (projectKey) => {
+  const reqUrl = `/projects/info/specify/${projectKey}`;
   try {
-    // const apiRes = await authInstance.get(reqUrl);
-    return mockProjectResponse?.data;
+    const apiRes = await authInstance.get(reqUrl);
+    console.log(apiRes);
+    // return mockProjectResponse?.data;
+    return apiRes.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 유저 정보 불러오기
+export const apiGetUserData = async () => {
+  const reqUrl = `/users/info`;
+  try {
+    const apiRes = await authInstance.get(reqUrl);
+    console.log(apiRes);
+    // return mockProjectResponse?.data;
+    return apiRes.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 내 프로젝트 보기 (옵션 세개 - 진행중 완료 모두보기)
+export const apiGetProjectListData = async (option = "all") => {
+  const reqUrl = `/users/info/${option}`;
+  try {
+    const apiRes = await defaultInstance.get(reqUrl);
+    console.log(apiRes);
+    // return mockProjectResponse?.data;
+    return apiRes.data.data;
   } catch (error) {
     console.log(error);
   }

@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "http://3.36.131.50:3000";
+const BASE_URL = "http://umc-d.kro.kr:3000";
 
 // 단순 get요청으로 인증값이 필요없는 경우
 const axiosApi = (url) => {
